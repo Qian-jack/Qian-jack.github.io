@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fragrance - ToSummer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Source+Sans+3:wght@400&amp;family=Assistant:wght@300&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0edec",
+                        "tertiary-container": "#8c7146",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed": "#281900",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "background": "#fcf9f8",
+                        "surface-tint": "#006b5d",
+                        "tertiary-fixed-dim": "#e3c290",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#77d7c5",
+                        "surface-dim": "#dcd9d9",
+                        "surface-container-low": "#f6f3f2",
+                        "on-primary": "#ffffff",
+                        "outline": "#6e7a76",
+                        "error": "#ba1a1a",
+                        "primary-container": "#108474",
+                        "on-secondary-fixed-variant": "#792f1b",
+                        "on-primary-fixed-variant": "#005046",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#ff987c",
+                        "tertiary": "#715930",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed": "#3b0800",
+                        "primary-fixed": "#93f4e0",
+                        "on-primary-fixed": "#00201b",
+                        "tertiary-fixed": "#ffdeac",
+                        "surface-variant": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdbd1",
+                        "on-tertiary-fixed-variant": "#59431c",
+                        "on-secondary-container": "#772e1a",
+                        "secondary-fixed-dim": "#ffb5a1",
+                        "secondary": "#984630",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary": "#00695c",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-container": "#fafffc",
+                        "outline-variant": "#bdc9c5",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-container": "#fffdff",
+                        "inverse-primary": "#77d7c5",
+                        "on-surface-variant": "#3e4946"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "80px",
+                        "stack-lg": "32px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Source Sans 3"],
+                        "headline-lg": ["Montserrat"],
+                        "label-sm": ["Assistant"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Source Sans 3"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.5", "letterSpacing": "0.1em", "fontWeight": "300" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.8", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-32 md:pb-0">
+<!-- TopAppBar -->
+<header class="hidden md:flex bg-surface/95 dark:bg-surface/95 text-primary dark:text-primary-fixed-dim font-headline-md text-headline-md font-body-md text-body-md font-label-sm text-label-sm docked full-width top-0 sticky z-50 backdrop-blur-xl border-b-[0.5px] border-outline-variant/30 shadow-[0_8px_30px_rgb(0,0,0,0.02)] flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<div class="flex items-center gap-8 w-1/3">
+<a class="font-headline-md text-headline-md tracking-[0.2em] text-on-surface dark:text-surface-bright uppercase" href="index.html">ToSummer</a>
+</div>
+<nav class="flex justify-center items-center gap-8 w-1/3">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 hover:opacity-80 transition-all duration-500 ease-out" href="index.html">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-[0.5px] border-primary pb-1 hover:opacity-80 transition-all duration-500 ease-out scale-95 transition-transform duration-200" href="screen2.html">Fragrance</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 hover:opacity-80 transition-all duration-500 ease-out" href="screen3.html">Bath &amp; Body</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 hover:opacity-80 transition-all duration-500 ease-out" href="#">Journal</a>
+</nav>
+<div class="flex items-center justify-end gap-6 w-1/3">
+<div class="relative flex items-center group">
+<input class="w-48 bg-transparent border-0 border-b border-outline-variant/50 focus:ring-0 focus:border-primary text-sm transition-all duration-300 px-0 py-1 opacity-0 group-hover:opacity-100 placeholder-on-surface-variant/50 focus:opacity-100" placeholder="Search..." type="text"/>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer absolute right-0 transition-colors">search</span>
+</div>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-all duration-500 ease-out" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-all duration-500 ease-out" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</div>
+</header>
+<!-- Mobile Header -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile py-stack-md bg-surface/95 backdrop-blur-xl sticky top-0 z-50">
+<a class="font-headline-md text-headline-md tracking-[0.2em] text-on-surface uppercase" href="index.html">ToSummer</a>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<span class="material-symbols-outlined text-on-surface-variant">shopping_bag</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg md:py-section-gap">
+<div class="mb-stack-lg md:mb-section-gap max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-stack-sm">Fragrance</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Discover our collection of premium perfumes, crafted with minimalist elegance and natural elements.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter lg:gap-y-section-gap">
+<!-- Product 1 -->
+<article class="group relative flex flex-col gap-stack-md">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-DEFAULT">
+<img alt="Pearl Box Perfume" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist, high-end studio shot of a translucent glass perfume bottle resting on a smooth, slightly textured warm white stone pedestal. The lighting is soft and ethereal, casting extremely gentle, diffused shadows that suggest a bright, airy environment. The overall color palette is restricted to pristine whites, soft creams, and very subtle hints of cool silver on the bottle cap. The aesthetic embodies quiet luxury and serene Eastern minimalist design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCet-v-F0dlfqB-U2CPp8fJ5IqhDAJwtM-eRah3ApthvhhiWnaI0IiBvZM2aJ_7yolNjTM5sFz4I4dgpHHoeI_GXVsskmO7wUIRuOfrVgpinoglmzwQrpCOYVixku8jGvWs7XvSLoY_v5wADb8r04DaLqQN3ssUfRABLpmOAkzPJfUmA5INqbSAZb95HM5MHCYw7YXRZuZqauP3corLTR_L0NTKTfqPUjrpoB7IkLui6qPRE0tjZKhKlSa6PzzDOW66_SCupeasj3Fq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="flex flex-col gap-1 items-start">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 bg-primary/10 text-primary font-label-sm text-label-sm rounded-full">Wood (木)</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">PEARL BOX PERFUME</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">CNY 890</p>
+<button class="mt-stack-sm w-full py-3 bg-on-surface text-surface font-label-sm text-label-sm uppercase tracking-widest hover:-translate-y-1 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">立即购买</button>
+</div>
+</article>
+<!-- Product 2 -->
+<article class="group relative flex flex-col gap-stack-md md:mt-24">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-DEFAULT">
+<img alt="Rambler Rose Perfume" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An elegant, studio-quality photograph of a minimalist perfume bottle set against an expansive, airy background of soft beige and extremely pale pink. The scene includes a single, delicate dried rose stem placed asymmetrically in the frame. The lighting mimics natural daylight filtering through shoji screens, creating soft, long shadows. The color palette focuses on warm whites, muted blush, and transparent glass. The mood is poetic, silent, and luxurious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmE_GlGFjyVGnQO8bdKEC7HPAQCRdmXx64FYfJracvnU0b-lSi1R0EW0r7rrLe4wEcjUfzXeN5ns62uoU5emco1hfclaD6nHiEvtjF81WgtZPm5pgS3lZMNEMr5jZC-DREEJy3yQLHo2DbDxg5_rf1KIVs3jmsVJne15_hN-ZkMcBO3Ku4ilnJVOijV9eJTTZ41zbG8J-Oe83OlLDDS-y9w5QQSNWOTe0FUCwYuOzaEFChlvLh4SoTtMfx6Nmx71Ms8L79hVg12cpu"/>
+</div>
+<div class="flex flex-col gap-1 items-start">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 bg-secondary/10 text-secondary font-label-sm text-label-sm rounded-full">Fire (火)</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">RAMBLER ROSE PERFUME</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">CNY 980</p>
+<button class="mt-stack-sm w-full py-3 bg-on-surface text-surface font-label-sm text-label-sm uppercase tracking-widest hover:-translate-y-1 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">立即购买</button>
+</div>
+</article>
+<!-- Product 3 -->
+<article class="group relative flex flex-col gap-stack-md">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-DEFAULT">
+<img alt="Void Perfume" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A striking, high-contrast minimalist studio shot of a dark, geometric perfume bottle on a stark white textured background resembling washi paper. The lighting is dramatic yet controlled, highlighting the crisp edges of the black glass bottle. The surrounding negative space is vast and pristine, emphasizing the object's solitary presence. The color palette is strictly black, deep charcoal, and bright warm white. The aesthetic is highly intellectual and modern editorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxZSAA3LlM01U4xHSGhuLl0rfQgl4uaQc8Aat_3SY5Pb2L5ggOW2fiabzzqP_wcP78a8FGOv6xTYt5tlcZj9TF9qb-D9VgUm_0PTIxtRudwB992YC59ptf5zW0WxS19YVsNDXiVlLS4mjXTdhfWXSoe-BORGpHwv8G65reohvJnVSukzGCuSjMuBAbC7U_k94axHNWBEkG-LKrTYXEd_NAHMmo_HhmZmrbtwBaN59lkCoPZ83ga63v-5IDkx_gWGHr4EDIRqnHC5is"/>
+</div>
+<div class="flex flex-col gap-1 items-start">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 bg-on-surface/10 text-on-surface font-label-sm text-label-sm rounded-full">Metal (金)</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">VOID PERFUME</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">CNY 1100</p>
+<button class="mt-stack-sm w-full py-3 bg-on-surface text-surface font-label-sm text-label-sm uppercase tracking-widest hover:-translate-y-1 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">立即购买</button>
+</div>
+</article>
+<!-- Product 4 -->
+<article class="group relative flex flex-col gap-stack-md md:mt-12">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-DEFAULT">
+<img alt="Magnolia Perfume" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A serene, soft-focus studio photograph of a clear glass perfume bottle resting gracefully on a pale, water-like reflective surface. The background is a very soft, diffused gradient of pale ivory to subtle warm grey. The lighting is completely even, creating no harsh shadows, only soft ambient gradients. The aesthetic conveys a feeling of purity, water elements, and quiet luxury, using a palette of transparent glass, white, and whisper-soft grey." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTeA9ivv2QBrrmM5RSR6-HjjLPmAH069z4Nl5jFdB99EVpj3ZRu7Jo8s9SzlgznSvsdOd2PyhQ1P_QjQd-3uKz-aeEXkYr368GeLhQLxBNadTlqSQxfnkNEx-AEEXIqb1Mf4P_mlJ1GzE7LY6f3oiKx1axwwRYk-FdQyfwz-WqnjYy4XSkMeKu2BtnsFAibijFXwfsm1h081ATh0P4iZv3k_V1tT6RPrdx2hQyDdfOsSOecly_AZgdEv3PjQJvKY0qkzJjGiccALlb"/>
+</div>
+<div class="flex flex-col gap-1 items-start">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 bg-surface-tint/10 text-surface-tint font-label-sm text-label-sm rounded-full">Water (水)</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">MAGNOLIA PERFUME</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">CNY 850</p>
+<button class="mt-stack-sm w-full py-3 bg-on-surface text-surface font-label-sm text-label-sm uppercase tracking-widest hover:-translate-y-1 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">立即购买</button>
+</div>
+</article>
+<!-- Product 5 -->
+<article class="group relative flex flex-col gap-stack-md lg:-mt-12">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-DEFAULT">
+<img alt="149 Chapter Perfume" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An editorial, highly textured close-up of a premium perfume bottle placed on a piece of rough-hewn, light-colored travertine stone. The background is an expansive, clean, bright white space. The lighting casts soft, ambient shadows that highlight the natural pores of the stone and the sleekness of the glass bottle. The color palette focuses on earthy creams, sandy beige, and clear glass. The mood is organic, grounded, and sophisticated minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKYgz9YhLzIDr01Ara6nIiK_zu7Jvp3XJZpI9HcBTW0Pm5NvhxjM4G0sB8arZAlcqM0P7wxZTyiyYaducOfMyc5y0GzGIxJK7UeK7eLzX1NV9WEqM4A0tWP3sEX1tVW8VPYeF9cndFSLHio6q6OyYMP3Wp2C1dq-gjsdRCW-6ljq6AeSCUZePqlrSIShEZGyLbwjpjbLcriolFSpVOgVVJwhqmweNH4Sz1Reyd9vaIDj29tAnP1L-Pv7dZUZWUY0qUi20BaKwm6MVn"/>
+</div>
+<div class="flex flex-col gap-1 items-start">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary font-label-sm text-label-sm rounded-full">Earth (土)</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">149 CHAPTER PERFUME</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">CNY 1250</p>
+<button class="mt-stack-sm w-full py-3 bg-on-surface text-surface font-label-sm text-label-sm uppercase tracking-widest hover:-translate-y-1 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">立即购买</button>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface/90 dark:bg-surface-container-lowest/90 text-primary dark:text-primary-fixed-dim font-label-sm text-label-sm tracking-widest font-headline-md text-on-surface fixed bottom-0 w-full z-50 rounded-t-full backdrop-blur-2xl border-t-[0.5px] border-outline-variant/20 shadow-[0_-10px_40px_rgba(0,0,0,0.03)] fixed bottom-0 left-0 w-full flex justify-around items-center py-stack-md px-margin-mobile bg-surface/95">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">home_mini</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold scale-110 transition-transform tap-highlight-none transition-all duration-300 hover:text-primary/80 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>Collections</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">category</span>
+<span>Elements</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>
