@@ -242,3 +242,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLightbox();
   setupQuantity();
 });
+
+// Deploy trigger: 2026-05-22T00:25:00
