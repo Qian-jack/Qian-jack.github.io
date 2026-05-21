@@ -1,0 +1,7 @@
+.git
+.git/**
+.agents
+.agents/**
+.DS_Store
+*.mp4
+video.mp4
