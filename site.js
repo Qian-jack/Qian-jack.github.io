@@ -100,6 +100,135 @@ async function setupHomeHandwriting() {
   observer.observe(handwritingTitle);
 }
 
+/* ===== Product Carousel ===== */
+function setupProductCarousel() {
+  const carousel = document.getElementById('productCarousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.carousel-track');
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const counterEl = document.getElementById('carouselCurrent');
+  const total = slides.length;
+  let current = 0;
+  let startX = 0;
+  let diffX = 0;
+  let isDragging = false;
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    if (counterEl) counterEl.textContent = current + 1;
+  }
+
+  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goTo(current - 1); });
+  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goTo(current + 1); });
+
+  // Touch swipe support
+  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+  track.addEventListener('touchmove', (e) => { if (isDragging) diffX = e.touches[0].clientX - startX; }, { passive: true });
+  track.addEventListener('touchend', () => {
+    if (Math.abs(diffX) > 50) { goTo(diffX > 0 ? current - 1 : current + 1); }
+    diffX = 0; isDragging = false;
+  });
+
+  // Click to open lightbox
+  carousel.addEventListener('click', () => { openLightbox(current); });
+
+  // Auto-play (optional gentle rotation)
+  let autoTimer = setInterval(() => goTo(current + 1), 5000);
+  carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  carousel.addEventListener('mouseleave', () => { autoTimer = setInterval(() => goTo(current + 1), 5000); });
+
+  // Expose for lightbox
+  carousel._goTo = goTo;
+  carousel._getCurrent = () => current;
+  carousel._getTotal = () => total;
+}
+
+/* ===== Lightbox / Zoom ===== */
+function setupLightbox() {
+  const overlay = document.getElementById('lightbox');
+  if (!overlay) return;
+
+  const img = document.getElementById('lightboxImg');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+  const prevBtn = overlay.querySelector('.lightbox-prev');
+  const nextBtn = overlay.querySelector('.lightbox-next');
+  const counterEl = document.getElementById('lightboxCurrent');
+  const carousel = document.getElementById('productCarousel');
+  let sources = [];
+  let current = 0;
+
+  // Gather image sources from carousel
+  if (carousel) {
+    sources = [...carousel.querySelectorAll('.carousel-slide img')].map(i => i.src);
+  }
+
+  function show(index) {
+    if (!sources.length) return;
+    current = (index + sources.length) % sources.length;
+    img.src = sources[current];
+    img.alt = `产品大图 ${current + 1}/${sources.length}`;
+    if (counterEl) counterEl.textContent = current + 1;
+  }
+
+  window.openLightbox = function (index) {
+    if (!sources.length) return;
+    show(index);
+    overlay.classList.add('is-active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeLightbox() {
+    overlay.classList.remove('is-active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', () => show(current - 1));
+  nextBtn.addEventListener('click', () => show(current + 1));
+
+  // Close on backdrop click
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === overlay.querySelector('.lightbox-stage')) {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('is-active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+
+  // Touch swipe in lightbox
+  let lbStartX = 0, lbDiffX = 0;
+  overlay.addEventListener('touchstart', (e) => { lbStartX = e.touches[0].clientX; }, { passive: true });
+  overlay.addEventListener('touchmove', (e) => { lbDiffX = e.touches[0].clientX - lbStartX; }, { passive: true });
+  overlay.addEventListener('touchend', () => {
+    if (Math.abs(lbDiffX) > 60) { show(lbDiffX > 0 ? current - 1 : current + 1); }
+    lbDiffX = 0;
+  });
+}
+
+/* ===== Quantity Buttons ===== */
+function setupQuantity() {
+  const minus = document.getElementById('qty-minus');
+  const plus = document.getElementById('qty-plus');
+  const display = document.getElementById('qty-value');
+  if (!minus || !plus || !display) return;
+
+  let qty = 1;
+  minus.addEventListener('click', () => { qty = Math.max(1, qty - 1); display.textContent = qty; });
+  plus.addEventListener('click', () => { qty = Math.min(99, qty + 1); display.textContent = qty; });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.body.dataset.page || 'home';
   const headerMount = document.querySelector('[data-site-header]');
@@ -109,4 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (footerMount) footerMount.outerHTML = footer();
 
   setupHomeHandwriting();
+  setupProductCarousel();
+  setupLightbox();
+  setupQuantity();
 });

@@ -1016,18 +1016,25 @@ input {
 }
 
 .figma-detail-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 528px) minmax(0, 528px);
-  gap: 64px;
-  min-height: 870px;
-  padding: 0 80px;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 80px 72px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .figma-detail-visual {
-  min-height: 870px;
+  width: 549px;
+  height: 549px;
+  flex-shrink: 0;
   overflow: hidden;
   background: #efeee9;
+  border-radius: 2px;
+  position: relative;
 }
 
 .figma-detail-visual img {
@@ -1041,8 +1048,9 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: min(100%, 432px);
-  padding: 167px 0;
+  width: 528px;
+  height: 644px;
+  box-sizing: border-box;
 }
 
 .figma-breadcrumb {
@@ -1507,19 +1515,22 @@ input {
   }
 
   .figma-detail-hero {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     gap: 36px;
-    min-height: 0;
     padding: 36px var(--pad) 0;
   }
 
   .figma-detail-visual {
-    min-height: clamp(520px, 100vw, 760px);
+    width: min(100%, 549px);
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 
   .figma-detail-info {
     width: 100%;
-    padding: 0;
+    height: auto;
+    padding: 0 0 48px;
   }
 
   .figma-breadcrumb {
@@ -2479,4 +2490,470 @@ button,
   border-color: #030303;
   box-shadow: none;
   transform: scale(0.98);
+}
+
+
+/* ===== Product Carousel ===== */
+.product-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.carousel-track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: 100%;
+  height: 100%;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  display: block;
+}
+
+.carousel-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  color: #1a1a1a;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 220ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.product-carousel:hover .carousel-prev,
+.product-carousel:hover .carousel-next {
+  opacity: 1;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-prev:active,
+.carousel-next:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-prev {
+  left: 16px;
+}
+
+.carousel-next {
+  right: 16px;
+}
+
+.carousel-prev svg,
+.carousel-next svg,
+.lightbox-prev svg,
+.lightbox-next svg {
+  display: block;
+}
+
+.carousel-counter {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  height: 28px;
+  padding: 0 10px;
+  background: #fff;
+  color: #000;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 28px;
+}
+
+
+/* ===== Lightbox / Zoom ===== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 320ms ease, visibility 320ms ease;
+}
+
+.lightbox-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 85vh;
+}
+
+.lightbox-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 2px;
+  transform: scale(0.92);
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lightbox-overlay.is-active .lightbox-stage img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  z-index: 10;
+  padding: 6px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  transform: translateX(-50%);
+}
+
+
+/* ===== Quote Icon ===== */
+.figma-story-band span .quote-icon {
+  display: block;
+  width: 22.5px;
+  height: 30px;
+  opacity: 0.6;
+}
+
+.figma-story-band span {
+  display: flex;
+  justify-content: center;
+  font-size: 0;
+}
+
+
+/* ===== 10 Page Section ===== */
+.figma-ten-page {
+  width: 100%;
+  overflow: hidden;
+}
+
+.figma-ten-page img {
+  width: 100%;
+  min-height: 400px;
+  object-fit: cover;
+}
+
+
+/* ===== Scene Section ===== */
+.figma-scene-section {
+  padding: 80px 40px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.figma-scene-row {
+  display: flex;
+  gap: 21px;
+  justify-content: center;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+}
+
+.figma-scene-card {
+  flex: 0 0 202px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.figma-scene-img {
+  width: 202px;
+  height: 232px;
+  overflow: hidden;
+  border-radius: 50% 50% 0 0 / 43.53% 43.53% 0 0; /* Perfect arch shape scale-independent */
+}
+
+.figma-scene-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.figma-scene-card:hover .figma-scene-img img {
+  transform: scale(1.06);
+}
+
+.figma-scene-card p {
+  margin: 0;
+  margin-top: 14px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  text-align: center;
+  font-weight: 300;
+}
+
+/* ===== Specifications Section ===== */
+.figma-specs-container {
+  max-width: 680px;
+  margin: 90px auto 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 0 20px;
+}
+
+.figma-specs-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.figma-spec-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  color: var(--muted); /* #4c4546 */
+}
+
+.figma-spec-label {
+  min-width: 75px;
+  font-weight: 300;
+}
+
+.figma-spec-value {
+  font-weight: 300;
+}
+
+
+/* ===== Updated Notes Section Title ===== */
+.figma-notes-section {
+  background: #fff;
+}
+
+
+/* ===== SR Only ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ===== Responsive Carousel & Lightbox ===== */
+@media (max-width: 980px) {
+  .figma-scene-row {
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .figma-scene-card {
+    flex: 0 0 calc(33.333% - 12px);
+    min-width: 140px;
+  }
+
+  .figma-scene-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 202 / 232;
+  }
+
+  .figma-ten-page img {
+    min-height: 300px;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    opacity: 0.7;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .lightbox-prev {
+    left: 12px;
+  }
+
+  .lightbox-next {
+    right: 12px;
+  }
+
+  .figma-specs-container {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    column-gap: 0;
+    max-width: 480px;
+    margin-top: 60px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .figma-scene-section {
+    padding: 36px 20px;
+  }
+
+  .figma-scene-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-bottom: 8px;
+  }
+
+  .figma-scene-card {
+    flex: 0 0 160px;
+    scroll-snap-align: start;
+  }
+
+  .figma-scene-img {
+    width: 160px;
+    height: 184px;
+  }
+
+  .carousel-counter {
+    right: 14px;
+    bottom: 14px;
+    font-size: 14px;
+    min-width: 42px;
+    height: 24px;
+  }
+
+  .lightbox-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .figma-ten-page img {
+    min-height: 200px;
+  }
 }

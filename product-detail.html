@@ -1,35 +1,73 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>分子罗曼 - 产品详情页</title>
+  <title>分子罗曼 - 木｜这也行 产品详情</title>
+  <meta name="description" content="分子罗曼五行系列 木｜这也行，透气绿意木质调香氛，松香、豆蔻、皮革。" />
   <link rel="stylesheet" href="styles.css" />
   <script src="site.js" defer></script>
 </head>
+
 <body data-page="products">
   <div data-site-header></div>
   <main class="main figma-detail-page">
+
+    <!-- Hero Section with Carousel -->
     <section class="figma-detail-hero" aria-labelledby="product-title">
       <div class="figma-detail-visual">
-        <img src="assets/figma/detail_bottle.png" alt="木白松烟香氛瓶" />
+        <div class="product-carousel" id="productCarousel">
+          <div class="carousel-track">
+            <div class="carousel-slide active">
+              <img src="assets/figma/detail_image01.png" alt="五行系列木这也行香氛瓶" />
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/figma/detail_image02.png" alt="木系列氛围图" />
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/figma/detail_image03.png" alt="木系列场景图" />
+            </div>
+          </div>
+          <button class="carousel-prev" type="button" aria-label="上一张">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="carousel-next" type="button" aria-label="下一张">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="carousel-counter" aria-live="polite"><span id="carouselCurrent">1</span>/3</div>
+        </div>
       </div>
       <div class="figma-detail-info">
-        <nav class="figma-breadcrumb" aria-label="面包屑"><span>香氛</span><span>/</span><strong>檀夜</strong></nav>
-        <h1 id="product-title"><span>分子罗曼五行系列</span>木白松烟</h1>
-        <p class="figma-detail-notes">檀香、豆蔻、皮革</p>
+        <nav class="figma-breadcrumb" aria-label="面包屑">
+          <span>香氛</span><span>/</span><strong>木质调</strong>
+        </nav>
+        <h1 id="product-title"><span>分子罗曼五行系列</span>木｜这也行</h1>
+        <p class="figma-detail-notes">松香、豆蔻、皮革</p>
         <p class="figma-detail-price">¥198</p>
         <div class="figma-purchase-panel">
-          <div class="figma-quantity"><span>数量</span><div><button type="button" aria-label="减少数量">−</button><b>1</b><button type="button" aria-label="增加数量">＋</button></div></div>
-          <a class="figma-cart-button" href="#">加入购物车</a>
+          <div class="figma-quantity">
+            <span>数量</span>
+            <div>
+              <button type="button" aria-label="减少数量" id="qty-minus">−</button>
+              <b id="qty-value">1</b>
+              <button type="button" aria-label="增加数量" id="qty-plus">＋</button>
+            </div>
+          </div>
+          <a class="figma-cart-button" href="#" id="add-to-cart">加入购物车</a>
           <p>所有订单尊享免费配送及退货服务。</p>
         </div>
       </div>
     </section>
 
+    <!-- Fragrance Notes Section -->
     <section class="figma-notes-section" aria-labelledby="notes-title">
       <div class="figma-section-heading">
-        <h2 id="notes-title">香调结构</h2>
+        <h2 id="notes-title">嗅觉图谱</h2>
         <span></span>
       </div>
       <div class="figma-notes-grid">
@@ -40,25 +78,29 @@
         </article>
         <article>
           <span>中调</span>
-          <h3>檀香 (Sandalwood)</h3>
+          <h3>松香 (Sandalwood)</h3>
           <p>温润深邃，如同月光下静谧的林间。</p>
         </article>
         <article>
           <span>后调</span>
           <h3>皮革 (Leather)</h3>
-          <p>微暗、干燥而克制，留下沉静余韵。</p>
+          <p>沉稳醇厚，留下难以忘怀的余韵。</p>
         </article>
       </div>
     </section>
 
+    <!-- Story Band -->
     <section class="figma-story-band" aria-label="香氛故事">
       <img src="assets/figma/detail_story_bg.png" alt="木白松烟香氛氛围背景" />
       <div>
-        <span>”</span>
-        <blockquote>“当绿色降临，<br />檀香的温润与豆蔻的辛香交织，<br />勾勒出一抹深邃而宁静的午夜幻境。”</blockquote>
+        <span>
+          <img src="assets/figma/detail_icon_quote.svg" alt="" class="quote-icon" />
+        </span>
+        <blockquote>"当绿色降临，<br />檀香的温润与豆蔻的辛香交织，<br />勾勒出一抹深邃而宁静的午夜幻境。"</blockquote>
       </div>
     </section>
 
+    <!-- Wood Scene -->
     <section class="figma-wood-scene" aria-labelledby="wood-title">
       <div class="figma-wood-copy">
         <h2 id="wood-title">木系列 · 透气绿意木质调</h2>
@@ -76,10 +118,13 @@
           <p>这些，也行。</p>
         </div>
       </div>
-      <figure class="figma-polaroid figma-polaroid-a"><img src="assets/figma/detail_image39.png" alt="木白松烟氛围图一" /></figure>
-      <figure class="figma-polaroid figma-polaroid-b"><img src="assets/figma/detail_image38.png" alt="木白松烟氛围图二" /></figure>
+      <figure class="figma-polaroid figma-polaroid-a"><img src="assets/figma/detail_image39.jpg" alt="木白松烟氛围图一" />
+      </figure>
+      <figure class="figma-polaroid figma-polaroid-b"><img src="assets/figma/detail_image38.png" alt="木白松烟氛围图二" />
+      </figure>
     </section>
 
+    <!-- Wood Feature -->
     <section class="figma-wood-feature" aria-label="木调说明">
       <div class="figma-wood-photo"><img src="assets/figma/detail_image59.png" alt="木白松烟自然场景" /></div>
       <div class="figma-wood-text">
@@ -88,36 +133,132 @@
       </div>
     </section>
 
+    <!-- Gift Intro -->
     <section class="figma-gift-intro" aria-labelledby="gift-title">
       <h2 id="gift-title">木｜这也行</h2>
       <p>赠品：原木肌理笔记本<br />对应：青色｜肝｜角音<br />理论：木主角音入肝，主生发疏泄；原木本色合青木之气，书写梳理情志、疏肝定绪，化解犹豫内耗。</p>
     </section>
 
+    <!-- Long Gallery -->
     <section class="figma-long-gallery" aria-label="产品详情图">
-      <img src="assets/figma/detail_image72.png" alt="木系列香氛场景" />
-      <img src="assets/figma/detail_image60.png" alt="木白松烟详情图一" />
-      <img src="assets/figma/detail_image62.png" alt="木白松烟详情图二" />
+      <img src="assets/figma/detail_image72.jpg" alt="木系列香氛场景" />
+      <img src="assets/figma/detail_image60.jpg" alt="木白松烟详情图一" />
+      <img src="assets/figma/detail_image62.jpg" alt="木白松烟详情图二" />
     </section>
 
-    <section class="figma-object-mosaic" aria-label="五行赠品展示">
-      <div class="figma-mosaic-grid">
-        <article class="figma-mosaic-photo"><img src="assets/figma/detail_image68.png" alt="五行赠品图一" /></article>
-        <article class="figma-object-card"><span>青木</span><i></i></article>
-        <article class="figma-mosaic-photo"><img src="assets/figma/detail_image69.png" alt="五行赠品图二" /></article>
-        <article class="figma-object-card"><span>角音</span><i></i></article>
-        <article class="figma-mosaic-photo"><img src="assets/figma/detail_image70.png" alt="五行赠品图三" /></article>
-        <article class="figma-object-card"><span>肝</span><i></i></article>
-        <article class="figma-object-card"><span>疏泄</span><i></i></article>
-        <article class="figma-object-card"><span>定绪</span><i></i></article>
-        <article class="figma-object-card"><span>原木</span><i></i></article>
-        <article class="figma-object-card"><span>生发</span><i></i></article>
+    <!-- 10 Page Spread -->
+    <section class="figma-ten-page" aria-label="笔记本展示">
+      <img src="assets/figma/detail_10page.png" alt="原木肌理笔记本展示" />
+    </section>
+
+    <!-- Usage Scenes & Specifications -->
+    <section class="figma-scene-section" aria-label="使用场景及商品参数">
+      <div class="figma-scene-row">
+        <div class="figma-scene-card">
+          <div class="figma-scene-img">
+            <img src="assets/figma/detail_scene01.png" alt="刚起床的时候" />
+          </div>
+          <p>刚起床的时候</p>
+        </div>
+        <div class="figma-scene-card">
+          <div class="figma-scene-img">
+            <img src="assets/figma/detail_scene02.png" alt="工作前" />
+          </div>
+          <p>工作前</p>
+        </div>
+        <div class="figma-scene-card">
+          <div class="figma-scene-img">
+            <img src="assets/figma/detail_scene03.png" alt="情绪堵住的时候" />
+          </div>
+          <p>情绪堵住的时候</p>
+        </div>
+        <div class="figma-scene-card">
+          <div class="figma-scene-img">
+            <img src="assets/figma/detail_scene04.png" alt="想重新进入状态" />
+          </div>
+          <p>想重新进入状态</p>
+        </div>
+        <div class="figma-scene-card">
+          <div class="figma-scene-img">
+            <img src="assets/figma/detail_scene05.png" alt="房间太闷的时候" />
+          </div>
+          <p>房间太闷的时候</p>
+        </div>
+      </div>
+
+      <!-- Product Specifications Grid -->
+      <div class="figma-specs-container">
+        <div class="figma-specs-column">
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">产地：</span>
+            <span class="figma-spec-value">中国大陆</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">品牌：</span>
+            <span class="figma-spec-value">分子罗曼/M2R</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">功效：</span>
+            <span class="figma-spec-value">增香</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">适用空间：</span>
+            <span class="figma-spec-value">20平米左右空间</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">品名：</span>
+            <span class="figma-spec-value">木｜这也行160ml</span>
+          </div>
+        </div>
+        <div class="figma-specs-column">
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">货号：</span>
+            <span class="figma-spec-value">M2R20261001</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">香味：</span>
+            <span class="figma-spec-value">松香、豆蔻、皮革</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">功效：</span>
+            <span class="figma-spec-value">增香</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">原料：</span>
+            <span class="figma-spec-value">天然植物植物萃取</span>
+          </div>
+          <div class="figma-spec-item">
+            <span class="figma-spec-label">尺寸：</span>
+            <span class="figma-spec-value">160mmx40mmx70mm</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="figma-ending-image" aria-label="木白松烟收束图">
-      <img src="assets/figma/detail_image71.png" alt="木白松烟香氛横幅" />
-    </section>
+    <!-- Ending Image -->
+
   </main>
+
+  <!-- Lightbox Overlay -->
+  <div class="lightbox-overlay" id="lightbox" aria-hidden="true" role="dialog" aria-label="图片预览">
+    <button class="lightbox-close" type="button" aria-label="关闭预览">×</button>
+    <button class="lightbox-prev" type="button" aria-label="上一张">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="lightbox-next" type="button" aria-label="下一张">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-stage">
+      <img id="lightboxImg" src="" alt="产品大图预览" />
+    </div>
+    <div class="lightbox-counter"><span id="lightboxCurrent">1</span>/3</div>
+  </div>
+
   <div data-site-footer></div>
 </body>
+
 </html>
