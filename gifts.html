@@ -3,43 +3,918 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>分子罗曼 - 赠品</title>
+  <title>分子罗曼 - 新五行情绪状态系统</title>
+  <meta name="description" content="新五行情绪状态系统——以香为媒，以五行为引。金木水火土，各有其道，各有其人。" />
   <link rel="stylesheet" href="styles.css" />
   <script src="site.js" defer></script>
+  <style>
+    /* ═══ GIFTS PAGE — 新五行情绪状态系统 ═══ */
+
+    body[data-page="gifts"] {
+      background: #f2f1ec;
+    }
+
+    /* ── Page Hero ── */
+    .gifts-hero {
+      padding: clamp(48px, 8vw, 96px) var(--pad) clamp(24px, 4vw, 48px);
+      text-align: center;
+    }
+
+    .gifts-hero-title {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+    }
+
+    .gifts-hero-subtitle {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(12px, 1.5vw, 18px);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    /* ── Tab Navigation ── */
+    .wuxing-tabs-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(24px, 4vw, 40px) var(--pad) 0;
+    }
+
+    .wuxing-tabs {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wuxing-tab-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--serif);
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      padding: 6px 20px 10px;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .wuxing-tab-btn:not(.active) {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .wuxing-tab-btn.active {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* active underline dot */
+    .wuxing-tab-underline {
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: #1d7c1d;
+      margin: 6px auto 0;
+      transition: background 0.3s ease;
+    }
+
+    .wuxing-tab-btn[data-element="金"] .wuxing-tab-underline { background: #b8963a; }
+    .wuxing-tab-btn[data-element="水"] .wuxing-tab-underline { background: #3a5f78; }
+    .wuxing-tab-btn[data-element="火"] .wuxing-tab-underline { background: #9b3a2a; }
+    .wuxing-tab-btn[data-element="土"] .wuxing-tab-underline { background: #8a6e3e; }
+
+    .wuxing-tab-underline-hidden {
+      visibility: hidden;
+    }
+
+    /* ── Tab Panels ── */
+    .wuxing-panels {
+      margin-top: 0;
+    }
+
+    .wuxing-panel {
+      display: none;
+    }
+
+    .wuxing-panel.active {
+      display: grid;
+      grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
+      min-height: 560px;
+    }
+
+    .wuxing-panel.fade-in {
+      animation: panel-fade 0.4s ease both;
+    }
+
+    @keyframes panel-fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Left: Image Column ── */
+    .panel-img-col {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-img-col > img.panel-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .panel-img-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(28px, 4vw, 48px);
+      justify-content: space-between;
+    }
+
+    .panel-img-caption {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      /* 木 green text from design */
+    }
+
+    .wuxing-panel[data-element="木"] .panel-img-caption { color: #96e870; }
+
+    .panel-img-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .panel-en-word {
+      font-family: 'Gabarito', 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .panel-traits {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.9);
+      margin: 0;
+    }
+
+    .panel-scent {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.82);
+      margin: 0;
+    }
+
+    /* ── Right: Copy Column ── */
+    .panel-copy-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: flex-start;
+      padding: clamp(36px, 5vw, 72px) clamp(32px, 5vw, 72px);
+      background: #f2f1ec;
+    }
+
+    .panel-copy-title {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+    }
+
+    .panel-copy-para {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    .panel-copy-note {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .panel-copy-send {
+      margin: 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    /* ── Poster Carousel ── */
+    .poster-carousel-wrap {
+      margin-top: clamp(48px, 8vw, 100px);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      /* prevent text select during drag */
+      user-select: none;
+    }
+
+    .poster-carousel-track {
+      display: flex;
+      gap: 0;
+      will-change: transform;
+    }
+
+    .poster-carousel-item {
+      flex: 0 0 auto;
+      width: 20vw;          /* 5 visible at default */
+      min-width: 180px;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .poster-carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s cubic-bezier(.25,.46,.45,.94);
+      pointer-events: none;
+    }
+
+    .poster-carousel-wrap:not(.is-paused) .poster-carousel-item:hover img,
+    .poster-carousel-wrap.is-paused .poster-carousel-item:hover img {
+      transform: scale(1.07);
+    }
+
+    /* ── Lightbox ── */
+    .poster-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.88);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .poster-lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .poster-lightbox-img-wrap {
+      position: relative;
+      max-width: min(520px, 90vw);
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .poster-lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+      transform: scale(0.93);
+      transition: transform 0.35s ease;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+    }
+
+    .poster-lightbox.open .poster-lightbox-img-wrap img {
+      transform: scale(1);
+    }
+
+    /* Close button */
+    .poster-lb-close {
+      position: fixed;
+      top: 24px;
+      right: 28px;
+      z-index: 9010;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .poster-lb-close:hover {
+      background: rgba(255,255,255,0.22);
+      transform: rotate(90deg);
+    }
+
+    .poster-lb-close svg {
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    /* Prev / Next arrows */
+    .poster-lb-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 9010;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .poster-lb-arrow:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .poster-lb-arrow.prev { left: clamp(12px, 3vw, 40px); }
+    .poster-lb-arrow.next { right: clamp(12px, 3vw, 40px); }
+
+    .poster-lb-arrow svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* Counter */
+    .poster-lb-counter {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9010;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      .wuxing-panel.active {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-img-col {
+        min-height: 400px;
+      }
+
+      .poster-carousel-item {
+        width: 33.3vw;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wuxing-tab-btn {
+        padding: 6px 12px 10px;
+      }
+
+      .poster-carousel-item {
+        width: 55vw;
+      }
+    }
+  </style>
 </head>
 <body data-page="gifts">
   <div data-site-header></div>
   <main class="main">
-    <section class="page-hero container">
-      <h1 class="latin-title">The Art of Sanctuary</h1>
-      <p class="body-copy">Crafting spaces of quiet luxury through intentional design.</p>
+
+    <!-- ── Page Hero ── -->
+    <section class="gifts-hero">
+      <h1 class="gifts-hero-title">- 新五行情绪状态系统-</h1>
+      <p class="gifts-hero-subtitle">- New Five Elements Emotional State System -</p>
     </section>
 
-    <section class="section container" style="padding-top: 0;">
-      <div class="gift-list">
-        <article class="gift-card">
-          <div class="gift-copy"><h2>木｜这也行</h2><p>赠品：原木肌理笔记本<br />对应：青色｜肝｜角音<br />理论：木主角音入肝，主生发疏泄；原木本色合青木之气，书写梳理情志、疏肝定绪，化解犹豫内耗。</p></div>
-          <div class="gift-media"><img src="assets/figma/gift_wood_main.png" alt="原木肌理笔记本" /><img src="assets/figma/gift_wood_side.png" alt="木元素搭配" /></div>
-        </article>
-        <article class="gift-card">
-          <div class="gift-copy"><h2>金｜真行</h2><p>赠品：金属五音音叉<br />对应：白色｜肺｜商音<br />理论：金主商音入肺，主肃降定神；金属音叉共振调频，清肺气、定决断、清醒自持。</p></div>
-          <div class="gift-media"><img src="assets/figma/gift_metal_main.png" alt="金属五音音叉" /><img src="assets/figma/gift_metal_side.png" alt="金元素搭配" /></div>
-        </article>
-        <article class="gift-card">
-          <div class="gift-copy"><h2>水｜都行</h2><p>赠品：玄黑釉面镇纸<br />对应：玄黑｜肾｜羽音<br />理论：水主羽音入肾，主沉静藏志、变通内敛；玄黑釉面镇纸色合水之本色，形制稳重镇心。</p></div>
-          <div class="gift-media"><img src="assets/figma/gift_water_main.png" alt="玄黑釉面镇纸" /><img src="assets/figma/gift_water_side.png" alt="水元素搭配" /></div>
-        </article>
-        <article class="gift-card">
-          <div class="gift-copy"><h2>火｜我行</h2><p>赠品：赤色心经抄经笺<br />对应：赤色｜心｜徵音<br />理论：火主徵音入心，主神明气血；朱红笺纸合火色火气，抄写心经，静心养神、升腾气场。</p></div>
-          <div class="gift-media"><img src="assets/figma/gift_fire_main.png" alt="赤色心经抄经笺" /><img src="assets/figma/gift_fire_side.png" alt="火元素搭配" /></div>
-        </article>
-        <article class="gift-card">
-          <div class="gift-copy"><h2>土｜你行</h2><p>赠品：土黄粗陶承托底座<br />对应：土黄｜脾｜宫音<br />理论：土主宫音入脾，主承载包容、扎根安稳；陶土大地原色，承托香氛，稳心绪、定气场。</p></div>
-          <div class="gift-media"><img src="assets/figma/gift_earth_main.png" alt="土黄粗陶承托底座" /><img src="assets/figma/gift_earth_side.png" alt="土元素搭配" /></div>
-        </article>
+    <!-- ── Tab Navigation ── -->
+    <div class="wuxing-tabs-wrap">
+      <div class="wuxing-tabs" role="tablist" aria-label="五行元素">
+        <button class="wuxing-tab-btn active" id="tab-木" data-element="木" role="tab"
+          aria-controls="panel-木" aria-selected="true" tabindex="0">
+          · 木 ·
+          <span class="wuxing-tab-underline"></span>
+        </button>
+        <button class="wuxing-tab-btn" id="tab-金" data-element="金" role="tab"
+          aria-controls="panel-金" aria-selected="false" tabindex="-1">
+          金
+          <span class="wuxing-tab-underline wuxing-tab-underline-hidden"></span>
+        </button>
+        <button class="wuxing-tab-btn" id="tab-水" data-element="水" role="tab"
+          aria-controls="panel-水" aria-selected="false" tabindex="-1">
+          水
+          <span class="wuxing-tab-underline wuxing-tab-underline-hidden"></span>
+        </button>
+        <button class="wuxing-tab-btn" id="tab-火" data-element="火" role="tab"
+          aria-controls="panel-火" aria-selected="false" tabindex="-1">
+          火
+          <span class="wuxing-tab-underline wuxing-tab-underline-hidden"></span>
+        </button>
+        <button class="wuxing-tab-btn" id="tab-土" data-element="土" role="tab"
+          aria-controls="panel-土" aria-selected="false" tabindex="-1">
+          土
+          <span class="wuxing-tab-underline wuxing-tab-underline-hidden"></span>
+        </button>
       </div>
-    </section>
+    </div>
+
+    <!-- ── Tab Panels ── -->
+    <div class="wuxing-panels">
+
+      <!-- 木 Panel -->
+      <section class="wuxing-panel active fade-in" id="panel-木" data-element="木"
+        role="tabpanel" aria-labelledby="tab-木">
+        <div class="panel-img-col">
+          <img class="panel-bg" src="assets/figma/figma_wood_panel.png" alt="随性的木系人生" />
+          <div class="panel-img-overlay">
+            <p class="panel-img-caption">随 性 的 木 系 人 生</p>
+            <div class="panel-img-bottom">
+              <p class="panel-en-word">Fine</p>
+              <p class="panel-traits">自然、随缘、平静</p>
+              <p class="panel-scent">
+                从地面雨后的泥土，逐步向上<br>
+                到苔藓、到雪松、到一片森林<br>
+                在木质调的温柔中，回归森林
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-copy-col">
+          <h2 class="panel-copy-title">木 丨这也行</h2>
+          <p class="panel-copy-para">
+            五行缺金的人，最柔软，也最摇摆<br>
+            人生其实有很多种亮法<br>
+            金不是锋芒<br>
+            金会沉淀，会温润<br>
+            所以我们选择让光里长出一些白<br>
+            哪怕淡一点，也没关系
+          </p>
+          <p class="panel-copy-para">
+            完美的叶片只存在于大棚<br>
+            如果你想当温室的花朵<br>
+            那本产品不适合你<br>
+            这里属于木系人生<br>
+            欢迎灌木、乔木、小草<br>
+            一起向阳生长，凡事放宽心，事事这也行
+          </p>
+          <p class="panel-copy-note">
+            "角"音回荡<br>
+            在香与音的共鸣中自在生长
+          </p>
+          <p class="panel-copy-send">
+            送随性自在<br>
+            愿对方像树木自然生长，接纳不完美
+          </p>
+        </div>
+      </section>
+
+      <!-- 金 Panel -->
+      <section class="wuxing-panel" id="panel-金" data-element="金"
+        role="tabpanel" aria-labelledby="tab-金">
+        <div class="panel-img-col">
+          <img class="panel-bg" src="assets/figma/gift_metal_main.png" alt="清醒的金系人生" />
+          <div class="panel-img-overlay">
+            <p class="panel-img-caption">清 醒 的 金 系 人 生</p>
+            <div class="panel-img-bottom">
+              <p class="panel-en-word">Spark</p>
+              <p class="panel-traits">清醒、肃降、定神</p>
+              <p class="panel-scent">
+                从清冽的白桦木<br>
+                到金属感的矿物凉意<br>
+                在清冷香调中，找到自持的力量
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-copy-col">
+          <h2 class="panel-copy-title">金 丨真行</h2>
+          <p class="panel-copy-para">
+            五行缺金的人，最容易摇摆<br>
+            不是没有主见<br>
+            是太在意别人的声音<br>
+            金不是冷漠<br>
+            金是先听自己的心<br>
+            所以我们选择让生命里多一点白
+          </p>
+          <p class="panel-copy-para">
+            金系人生像秋天的月色<br>
+            清冷而不薄情，清醒而不冷漠<br>
+            有判断力，有决断感<br>
+            每一次选择都掷地有声<br>
+            这才是金的担当<br>
+            你行
+          </p>
+          <p class="panel-copy-note">
+            "商"音肃穆<br>
+            在香与音的共鸣中清醒自持
+          </p>
+          <p class="panel-copy-send">
+            送清醒与决断<br>
+            愿对方像秋金般，清冷自知，心有定见
+          </p>
+        </div>
+      </section>
+
+      <!-- 水 Panel -->
+      <section class="wuxing-panel" id="panel-水" data-element="水"
+        role="tabpanel" aria-labelledby="tab-水">
+        <div class="panel-img-col">
+          <img class="panel-bg" src="assets/figma/gift_water_main.png" alt="沉静的水系人生" />
+          <div class="panel-img-overlay">
+            <p class="panel-img-caption">沉 静 的 水 系 人 生</p>
+            <div class="panel-img-bottom">
+              <p class="panel-en-word">Flow</p>
+              <p class="panel-traits">沉静、藏志、变通</p>
+              <p class="panel-scent">
+                从深海的咸湿气息<br>
+                到雨后的潮湿泥土<br>
+                在水润香调中，找到内敛的智慧
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-copy-col">
+          <h2 class="panel-copy-title">水 丨都行</h2>
+          <p class="panel-copy-para">
+            五行缺水的人，最容易焦虑<br>
+            不是没有智慧<br>
+            是藏不住自己的情绪<br>
+            水不是退缩<br>
+            水是以柔克刚，遇缺则流<br>
+            所以我们选择让生命里多一点黑
+          </p>
+          <p class="panel-copy-para">
+            水系人生像深夜的湖面<br>
+            静默而深邃，变通而不失本色<br>
+            有智慧，有韧劲<br>
+            每一次退让都是蓄力<br>
+            这才是水的智慧<br>
+            都行
+          </p>
+          <p class="panel-copy-note">
+            "羽"音幽深<br>
+            在香与音的共鸣中沉心入定
+          </p>
+          <p class="panel-copy-send">
+            送沉静与智慧<br>
+            愿对方像流水般，内敛深邃，随机应变
+          </p>
+        </div>
+      </section>
+
+      <!-- 火 Panel -->
+      <section class="wuxing-panel" id="panel-火" data-element="火"
+        role="tabpanel" aria-labelledby="tab-火">
+        <div class="panel-img-col">
+          <img class="panel-bg" src="assets/figma/gift_fire_main.png" alt="热烈的火系人生" />
+          <div class="panel-img-overlay">
+            <p class="panel-img-caption">热 烈 的 火 系 人 生</p>
+            <div class="panel-img-bottom">
+              <p class="panel-en-word">SELF</p>
+              <p class="panel-traits">神明、气血、热烈</p>
+              <p class="panel-scent">
+                从热带花朵的浓烈芬芳<br>
+                到辛香料的温暖刺激<br>
+                在东方香调中，找到热情的归宿
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-copy-col">
+          <h2 class="panel-copy-title">火 丨我行</h2>
+          <p class="panel-copy-para">
+            五行缺火的人，最容易冷漠<br>
+            不是不想表达<br>
+            是不知道如何燃起自己<br>
+            火不是冲动<br>
+            火是点亮别人的同时，照见自己<br>
+            所以我们选择让生命里多一点红
+          </p>
+          <p class="panel-copy-para">
+            火系人生像夏日的阳光<br>
+            热烈而不灼伤，明亮而不刺眼<br>
+            有感召力，有感染力<br>
+            每一次发光都照亮身边<br>
+            这才是火的馈赠<br>
+            我行
+          </p>
+          <p class="panel-copy-note">
+            "徵"音激扬<br>
+            在香与音的共鸣中升腾气场
+          </p>
+          <p class="panel-copy-send">
+            送热情与活力<br>
+            愿对方像烈火般，光芒四射，温暖同行
+          </p>
+        </div>
+      </section>
+
+      <!-- 土 Panel -->
+      <section class="wuxing-panel" id="panel-土" data-element="土"
+        role="tabpanel" aria-labelledby="tab-土">
+        <div class="panel-img-col">
+          <img class="panel-bg" src="assets/figma/gift_earth_main.png" alt="稳重的土系人生" />
+          <div class="panel-img-overlay">
+            <p class="panel-img-caption">稳 重 的 土 系 人 生</p>
+            <div class="panel-img-bottom">
+              <p class="panel-en-word">Peace</p>
+              <p class="panel-traits">踏实、可靠、包容</p>
+              <p class="panel-scent">
+                从大地的醇厚质朴<br>
+                到麦田的温暖香气<br>
+                再到檀香的沉稳木质<br>
+                在大地香调中，找到安稳的归宿
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-copy-col">
+          <h2 class="panel-copy-title">土 丨都行</h2>
+          <p class="panel-copy-para">
+            五行缺土的人，最漂泊，也最不安<br>
+            人生其实有很多种稳法<br>
+            土不是坚硬<br>
+            土会承载，会托举<br>
+            所以我们选择让脚下长出一些黄<br>
+            哪怕慢一点，也没关系
+          </p>
+          <p class="panel-copy-para">
+            土系人生像大地一样<br>
+            默默承载，从不张扬<br>
+            给人踏实的安全感<br>
+            每一步都走得稳稳当当<br>
+            这才是土的担当
+          </p>
+          <p class="panel-copy-note">
+            "宫"音沉稳<br>
+            在香与音的共鸣中脚踏实地
+          </p>
+          <p class="panel-copy-send">
+            送安稳踏实<br>
+            愿对方像大地稳重可靠，有安全感
+          </p>
+        </div>
+      </section>
+
+    </div><!-- /.wuxing-panels -->
+
+    <!-- ── Poster Auto-Scroll Carousel ── -->
+    <div class="poster-carousel-wrap" id="posterCarousel">
+      <div class="poster-carousel-track" id="posterTrack">
+        <!-- items injected by JS (duplicated for infinite loop) -->
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="poster-lightbox" id="posterLightbox" role="dialog" aria-modal="true" aria-label="海报大图">
+      <button class="poster-lb-close" id="lbClose" aria-label="关闭">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="poster-lb-arrow prev" id="lbPrev" aria-label="上一张">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="poster-lightbox-img-wrap">
+        <img id="lbImg" src="" alt="" />
+      </div>
+      <button class="poster-lb-arrow next" id="lbNext" aria-label="下一张">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="poster-lb-counter" id="lbCounter">1 / 5</div>
+    </div>
+
   </main>
   <div data-site-footer></div>
+
+  <script>
+  /* ════════════════════════════════════════
+     1. Tab switching
+  ════════════════════════════════════════ */
+  (function () {
+    const btns   = Array.from(document.querySelectorAll('.wuxing-tab-btn'));
+    const panels = Array.from(document.querySelectorAll('.wuxing-panel'));
+
+    function activate(el) {
+      const elem = el.dataset.element;
+      btns.forEach(b => {
+        const isActive = b.dataset.element === elem;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        b.setAttribute('tabindex', isActive ? '0' : '-1');
+        const line = b.querySelector('.wuxing-tab-underline');
+        if (line) line.classList.toggle('wuxing-tab-underline-hidden', !isActive);
+        const label = b.dataset.element;
+        b.childNodes[0].textContent = isActive ? `· ${label} ·` : ` ${label} `;
+      });
+      panels.forEach(p => {
+        p.classList.remove('active', 'fade-in');
+        if (p.dataset.element === elem) {
+          p.classList.add('active');
+          requestAnimationFrame(() => requestAnimationFrame(() => p.classList.add('fade-in')));
+        }
+      });
+    }
+
+    btns.forEach(b => {
+      b.addEventListener('click', () => activate(b));
+      b.addEventListener('keydown', e => {
+        let idx = btns.indexOf(b);
+        if (e.key === 'ArrowRight') { idx = (idx + 1) % btns.length; btns[idx].focus(); activate(btns[idx]); }
+        if (e.key === 'ArrowLeft')  { idx = (idx - 1 + btns.length) % btns.length; btns[idx].focus(); activate(btns[idx]); }
+      });
+    });
+
+    const init = panels.find(p => p.classList.contains('active'));
+    if (init) requestAnimationFrame(() => requestAnimationFrame(() => init.classList.add('fade-in')));
+  })();
+
+
+  /* ════════════════════════════════════════
+     2. Poster Infinite Scroll Carousel
+  ════════════════════════════════════════ */
+  (function () {
+    const POSTERS = [
+      { src: 'assets/figma/figma_poster_wood.png',  alt: '木 · 这也行' },
+      { src: 'assets/figma/figma_poster_gold.png',  alt: '金 · 你行'   },
+      { src: 'assets/figma/figma_poster_water.png', alt: '水 · 真行'   },
+      { src: 'assets/figma/figma_poster_fire.png',  alt: '火 · 我行'   },
+      { src: 'assets/figma/figma_poster_earth.png', alt: '土 · 都行'   },
+    ];
+
+    const wrap  = document.getElementById('posterCarousel');
+    const track = document.getElementById('posterTrack');
+
+    // Duplicate posters 3× for seamless loop
+    const REPS = 3;
+    for (let r = 0; r < REPS; r++) {
+      POSTERS.forEach((p, i) => {
+        const item = document.createElement('div');
+        item.className = 'poster-carousel-item';
+        item.dataset.index = i; // original index for lightbox
+        const img = document.createElement('img');
+        img.src = p.src;
+        img.alt = p.alt;
+        img.loading = 'lazy';
+        item.appendChild(img);
+        track.appendChild(item);
+      });
+    }
+
+    /* ── Scroll animation ── */
+    let offset   = 0;
+    let paused   = false;
+    let raf      = null;
+    const SPEED  = 0.6; // px per frame
+
+    function getItemWidth() {
+      const first = track.firstElementChild;
+      return first ? first.getBoundingClientRect().width : 0;
+    }
+
+    function getSetWidth() {
+      return getItemWidth() * POSTERS.length;
+    }
+
+    function tick() {
+      if (!paused) {
+        offset += SPEED;
+        const setW = getSetWidth();
+        if (setW > 0 && offset >= setW) {
+          offset -= setW; // seamless reset
+        }
+        track.style.transform = `translateX(${-offset}px)`;
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    raf = requestAnimationFrame(tick);
+
+    /* pause on hover */
+    wrap.addEventListener('mouseenter', () => { paused = true;  wrap.classList.add('is-paused'); });
+    wrap.addEventListener('mouseleave', () => { paused = false; wrap.classList.remove('is-paused'); });
+
+    /* pause when tab not visible */
+    document.addEventListener('visibilitychange', () => {
+      paused = document.hidden;
+    });
+
+
+    /* ════════════════════════════════════════
+       3. Lightbox
+    ════════════════════════════════════════ */
+    const lb       = document.getElementById('posterLightbox');
+    const lbImg    = document.getElementById('lbImg');
+    const lbClose  = document.getElementById('lbClose');
+    const lbPrev   = document.getElementById('lbPrev');
+    const lbNext   = document.getElementById('lbNext');
+    const lbCounter = document.getElementById('lbCounter');
+
+    let currentIdx = 0;
+
+    function showLightbox(idx) {
+      currentIdx = ((idx % POSTERS.length) + POSTERS.length) % POSTERS.length;
+      const p = POSTERS[currentIdx];
+      lbImg.src = p.src;
+      lbImg.alt = p.alt;
+      lbCounter.textContent = `${currentIdx + 1} / ${POSTERS.length}`;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function goPrev() { showLightbox(currentIdx - 1); }
+    function goNext() { showLightbox(currentIdx + 1); }
+
+    // Open on item click
+    track.addEventListener('click', e => {
+      const item = e.target.closest('.poster-carousel-item');
+      if (!item) return;
+      showLightbox(parseInt(item.dataset.index, 10));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click',  e => { e.stopPropagation(); goPrev(); });
+    lbNext.addEventListener('click',  e => { e.stopPropagation(); goNext(); });
+
+    // Close on backdrop click
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  goPrev();
+      if (e.key === 'ArrowRight') goNext();
+    });
+
+    // Touch swipe in lightbox
+    let touchStartX = 0;
+    lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) dx < 0 ? goNext() : goPrev();
+    });
+
+  })();
+  </script>
 </body>
 </html>
