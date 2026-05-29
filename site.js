@@ -19,7 +19,7 @@ function header(active) {
     ['products.html', '产品', 'products'],
     ['about.html', '品牌故事', 'story'],
     ['stores.html', '门店', 'stores'],
-    ['gifts.html', '赠品', 'gifts'],
+    ['gifts.html', '理念', 'gifts'],
     ['about.html', '关于我们', 'about']
   ];
 
