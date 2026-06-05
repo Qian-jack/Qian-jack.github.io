@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>诺和盈 #健康年龄挑战赛# 线上传播规划海报</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & CSS Custom Properties */
+    :root {
+      --primary-color: #144191; /* Novo Deep Blue */
+      --accent-color: #1995fc;  /* Novo Cyan Blue */
+      --text-dark: #000000;
+      --text-gray: #475569;
+      --bg-slate: #f4f8fa;
+      --card-bg: #ffffff;
+      --border-color: rgba(20, 65, 145, 0.08);
+      --glow-shadow: 0 0 30px rgba(25, 149, 252, 0.15);
+      --font-outfit: 'Outfit', 'Noto Sans SC', sans-serif;
+      --font-inter: 'Inter', 'Noto Sans SC', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0b111e;
+      color: var(--text-dark);
+      font-family: var(--font-inter);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 16:9 Poster Container */
+    #poster-viewport {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    #poster-container {
+      width: 1920px;
+      height: 1080px;
+      background: linear-gradient(135deg, #ffffff 0%, #f4f9fd 50%, #eef6fc 100%);
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      display: grid;
+      grid-template-rows: 100px 1fr 60px;
+      padding: 50px 70px 40px 70px;
+      transform-origin: center center;
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Abstract background grid overlay for premium feel */
+    #poster-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 100% 0%, rgba(25, 149, 252, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(20, 65, 145, 0.03) 0%, transparent 50%),
+        linear-gradient(rgba(20, 65, 145, 0.01) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 65, 145, 0.01) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+      border-bottom: 1px solid rgba(20, 65, 145, 0.08);
+      padding-bottom: 20px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand-logo {
+      width: 4px;
+      height: 32px;
+      background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .brand-breadcrumb {
+      font-family: var(--font-outfit);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-color);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .brand-badge {
+      background: rgba(25, 149, 252, 0.1);
+      color: var(--primary-color);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .header-right {
+      font-size: 14px;
+      color: var(--text-gray);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-color);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(25, 149, 252, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(25, 149, 252, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(25, 149, 252, 0); }
+    }
+
+    /* Main Dashboard Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1.3fr;
+      gap: 45px;
+      padding: 40px 0 20px 0;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* Column 1: Title, Tagline & Hero visual */
+    .hero-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-right: 20px;
+    }
+
+    .title-group {
+      margin-bottom: 25px;
+    }
+
+    .campaign-tag {
+      color: var(--accent-color);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .title-group h1 {
+      font-family: var(--font-outfit);
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--primary-color);
+      letter-spacing: -0.015em;
+      margin-bottom: 18px;
+    }
+
+    .title-group h1 span {
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .campaign-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-dark);
+      font-weight: 400;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 15px 20px;
+      border-radius: 12px;
+      border-left: 3px solid var(--accent-color);
+      box-shadow: 0 4px 20px rgba(20, 65, 145, 0.02);
+    }
+
+    .campaign-desc strong {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    /* Hero Diagram container */
+    .hero-diagram-container {
+      position: relative;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(25, 149, 252, 0.04) 0%, transparent 70%);
+      border-radius: 20px;
+      padding: 10px;
+      margin-top: 15px;
+      min-height: 400px;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-height: 420px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(20, 65, 145, 0.04);
+      background: #ffffff;
+      border: 1px solid rgba(20, 65, 145, 0.05);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-image-wrapper:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(20, 65, 145, 0.08);
+      border-color: rgba(25, 149, 252, 0.3);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-image-wrapper:hover .hero-image {
+      transform: scale(1.03);
+    }
+
+    .image-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Column 2: Event Materials */
+    .materials-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-title {
+      font-family: var(--font-outfit);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      letter-spacing: 0.05em;
+    }
+
+    .section-title svg {
+      color: var(--accent-color);
+      width: 24px;
+      height: 24px;
+    }
+
+    .materials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-grow: 1;
+    }
+
+    .material-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      box-shadow: 0 4px 15px rgba(20, 65, 145, 0.015);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .material-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--accent-color);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .material-card:hover {
+      transform: translateX(5px) translateY(-2px);
+      box-shadow: 0 10px 25px rgba(20, 65, 145, 0.05);
+      border-color: rgba(25, 149, 252, 0.25);
+    }
+
+    .material-card:hover::before {
+      opacity: 1;
+    }
+
+    .material-icon {
+      background: rgba(25, 149, 252, 0.08);
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+      transition: all 0.3s ease;
+    }
+
+    .material-card:hover .material-icon {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    .material-info h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+
+    .material-info p {
+      font-size: 13px;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+
+    /* Column 3: Product Design */
+    .products-col {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(20, 65, 145, 0.02);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(20, 65, 145, 0.06);
+      border-color: rgba(25, 149, 252, 0.25);
+    }
+
+    .product-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(25, 149, 252, 0.02) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .product-badge {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent-color);
+      background: rgba(25, 149, 252, 0.08);
+      padding: 6px 14px;
+      border-radius: 50px;
+    }
+
+    .product-price {
+      text-align: right;
+    }
+
+    .price-value {
+      font-family: var(--font-outfit);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary-color);
+    }
+
+    .price-unit {
+      font-size: 12px;
+      color: var(--text-gray);
+      font-weight: 500;
+    }
+
+    .product-title {
+      font-family: var(--font-outfit);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    /* Product 1 specific: Interactive Indicator Capsules */
+    .indicators-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .indicator-capsule {
+      background: #f1f5f9;
+      border: 1px solid rgba(20, 65, 145, 0.05);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-gray);
+      cursor: help;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .indicator-capsule:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+      border-color: var(--accent-color);
+      box-shadow: 0 4px 12px rgba(25, 149, 252, 0.25);
+    }
+
+    /* Clinical tooltip stylings */
+    .indicator-capsule .tooltip {
+      visibility: hidden;
+      width: 250px;
+      background-color: #0f172a;
+      color: #fff;
+      text-align: left;
+      border-radius: 10px;
+      padding: 12px 16px;
+      position: absolute;
+      z-index: 10;
+      bottom: 140%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.6;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+
+    .indicator-capsule .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #0f172a transparent transparent transparent;
+    }
+
+    .indicator-capsule:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(-5px);
+    }
+
+    .product-meta-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(20, 65, 145, 0.08);
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .meta-value {
+      color: var(--text-dark);
+    }
+
+    .meta-value em {
+      font-style: normal;
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    /* Product 2 lists */
+    .inclusion-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .inclusion-item {
+      font-size: 13px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .inclusion-item svg {
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+
+    /* Footer / Legend / CTA bar */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(20, 65, 145, 0.08);
+      padding-top: 18px;
+      z-index: 2;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--text-gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .action-btn {
+      background: transparent;
+      border: 1px solid rgba(20, 65, 145, 0.15);
+      color: var(--primary-color);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 15px rgba(20, 65, 145, 0.12);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      color: #ffffff;
+      border: none;
+    }
+
+    .action-btn.primary:hover {
+      box-shadow: 0 6px 20px rgba(25, 149, 252, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Overlay visual element: Top Left Floating Bubble */
+    .floating-glow {
+      position: absolute;
+      top: 10%;
+      left: 30%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(25, 149, 252, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(40px);
+    }
+
+    /* Print Override for high quality downloads */
+    @media print {
+      body {
+        background: #ffffff !important;
+        overflow: visible;
+      }
+      #poster-container {
+        box-shadow: none !important;
+        transform: none !important;
+        border-radius: 0 !important;
+      }
+      .footer-actions {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="poster-viewport">
+    <div id="poster-container">
+      <div class="floating-glow"></div>
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="brand-group">
+          <span class="brand-logo"></span>
+          <span class="brand-breadcrumb">线上传播规划 ｜ 诺和盈®</span>
+          <span class="brand-badge">健康年龄定制化方案</span>
+        </div>
+        <div class="header-right">
+          <span class="pulse-dot"></span>
+          <span>医学减重 & 生物年龄管理闭环</span>
+        </div>
+      </header>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-grid">
+        
+        <!-- Left: Hero, Title & Tagline -->
+        <section class="hero-col">
+          <div class="title-group">
+            <span class="campaign-tag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              CAMPAGIN PROGRAM
+            </span>
+            <h1>诺和盈<br><span>#健康年龄挑战赛#</span></h1>
+            <p class="campaign-desc">
+              为期 <strong>30天</strong> 的线上线下联动活动。核心是<strong>激活机构存量用户</strong>，通过真实案例产出，实现公域口碑的裂变式扩散与增长。
+            </p>
+          </div>
+          
+          <!-- Scientific Biological Age Reversal Dial Diagram -->
+          <div class="hero-diagram-container">
+            <div class="hero-image-wrapper">
+              <img src="assets/novofine_hero.png" alt="诺和盈生物年龄管理科学表盘 - 细胞减龄技术示意" class="hero-image" />
+              <div class="image-badge">REVERSE AGING TECHNOLOGY</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Center: Campaign Materials -->
+        <section class="materials-col">
+          <h2 class="section-title">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            配套活动物料 (支柱体系)
+          </h2>
+          
+          <div class="materials-list">
+            
+            <article class="material-card">
+              <div class="material-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5m4.72 0l-2.25 1.5a2 2 0 01-2.22 0l-2.25-1.5" />
+                </svg>
+              </div>
+              <div class="material-info">
+                <h3>机构邀约模板</h3>
+                <p>CRM/会员系统定向推送的精密邀约文案，激活静默客群</p>
+              </div>
+            </article>
+
+            <article class="material-card">
+              <div class="material-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="material-info">
+                <h3>健康年龄报告模板</h3>
+                <p>机构端给用户的检测报告 (含综合生物年龄 + 各细分维度年龄)</p>
+              </div>
+            </article>
+
+            <article class="material-card">
+              <div class="material-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div class="material-info">
+                <h3>用户见证授权书</h3>
+                <p>合规、严谨的用户真实蜕变案例授权协议，确保内容安全出圈</p>
+              </div>
+            </article>
+
+            <article class="material-card">
+              <div class="material-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div class="material-info">
+                <h3>打卡素材包</h3>
+                <p>统一调性的社交打卡背景、贴纸、文案，降低存量用户分享门槛</p>
+              </div>
+            </article>
+
+            <article class="material-card">
+              <div class="material-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div class="material-info">
+                <h3>机构联动海报</h3>
+                <p>统一规范的线下活动高格调主视觉，建立高阶医疗健康品牌心智</p>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- Right: Institution Product Design -->
+        <section class="products-col">
+          <h2 class="section-title">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 00-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+            机构端产品线架构
+          </h2>
+
+          <!-- PRODUCT 1 -->
+          <article class="product-card">
+            <div class="product-header">
+              <div>
+                <span class="product-badge">引流钩子 ｜ 激发决策</span>
+                <h3 class="product-title" style="margin-top: 10px;">产品 1 ：健康年龄检测包</h3>
+              </div>
+              <div class="product-price">
+                <span class="price-value">¥299-599</span>
+                <span class="price-unit">/ 机构自主定价</span>
+              </div>
+            </div>
+            
+            <div class="indicators-grid">
+              <span class="indicator-capsule">hs-CRP
+                <span class="tooltip"><strong>超敏C反应蛋白 (hs-CRP)</strong><br>反应体内慢性的系统性微炎症水平。慢性炎症是诱导细胞与血管加速老化衰亡（即“炎性衰老”）的关键指征。</span>
+              </span>
+              <span class="indicator-capsule">BMI
+                <span class="tooltip"><strong>身体质量指数 (BMI)</strong><br>直接反映肥胖与代谢负荷。肥胖被证实会诱导端粒加速缩短，增加全身脏器生物年龄。</span>
+              </span>
+              <span class="indicator-capsule">血糖
+                <span class="tooltip"><strong>血液葡萄糖 (血糖)</strong><br>评估胰岛素敏感度与晚期糖化终末产物 (AGEs) 水平，AGEs 会使皮肤及血管内皮胶原蛋白硬化衰老。</span>
+              </span>
+              <span class="indicator-capsule">血脂
+                <span class="tooltip"><strong>血液脂质 (血脂)</strong><br>包含胆固醇、甘油三酯等，反映心血管的生理健康度，直接干预和计算心血管硬化“生物学年龄”。</span>
+              </span>
+              <span class="indicator-capsule">血压
+                <span class="tooltip"><strong>外周阻力 (血压)</strong><br>反映动脉弹性和阻力状态。长期血压异常会使动脉发生实质性生理退化与老化。</span>
+              </span>
+            </div>
+
+            <div class="product-meta-row">
+              <span class="meta-label">输出结果</span>
+              <span class="meta-value"><strong>《健康年龄报告》</strong> (综合生物学年龄 + 多维度机能年龄评估)</span>
+            </div>
+            <div class="product-meta-row" style="border-top: none; padding-top: 4px;">
+              <span class="meta-label">核心目的</span>
+              <span class="meta-value">让用户<em>直观“看见”</em>自己的生理健康年龄，强烈激发自我改变和接受治疗的欲望。</span>
+            </div>
+          </article>
+
+          <!-- PRODUCT 2 -->
+          <article class="product-card" style="flex-grow: 1;">
+            <div class="product-header">
+              <div>
+                <span class="product-badge" style="color: var(--primary-color); background: rgba(20, 65, 145, 0.1);">高客单价 ｜ 终身锁定</span>
+                <h3 class="product-title" style="margin-top: 10px;">产品 2 ：健康年龄管理年卡</h3>
+              </div>
+              <div class="product-price">
+                <span class="price-value">¥2-5万</span>
+                <span class="price-unit">/ 年</span>
+              </div>
+            </div>
+
+            <ul class="inclusion-list">
+              <li class="inclusion-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                全年 4 次全套深度健康年龄精准检测 (跟踪细胞年龄回溯)
+              </li>
+              <li class="inclusion-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                诺和盈® (Wegovy®) 核心合规医学减重 & 代谢重塑疗程
+              </li>
+              <li class="inclusion-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                资深健康管理师 1对1 全程动态跟踪服务 (确保依从性)
+              </li>
+              <li class="inclusion-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                季度知名临床代谢/心血管专家联合问诊评估
+              </li>
+            </ul>
+
+            <div class="product-meta-row" style="margin-top: auto;">
+              <span class="meta-label">核心目的</span>
+              <span class="meta-value">深度绑定高净值长期用户，<em>大幅提升患者长效依从性</em>，锁定机构高利润复购闭环。</span>
+            </div>
+          </article>
+        </section>
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-note">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          注：本规划方案基于诺和盈®代谢改善与健康生物年龄逆转临床理论设计。活动最终解释权归各合作机构所有。
+        </div>
+        <div class="footer-actions">
+          <button class="action-btn" onclick="window.print()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9v4a2 2 0 00-2 2v3z" />
+            </svg>
+            打印/保存 PDF
+          </button>
+          <button class="action-btn primary" onclick="alert('提示：请按住键盘 Ctrl + P (Mac上为 Cmd + P) 并选择 [另存为 PDF] 以 16:9 横板尺寸完美导出高清设计图。')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            导出高清设计图
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    // mathematically accurate auto-scale factor calculation to lock 16:9 ratio in any browser viewport
+    function resizePoster() {
+      const poster = document.getElementById('poster-container');
+      const targetWidth = 1920;
+      const targetHeight = 1080;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scale factors
+      const scaleX = windowWidth / targetWidth;
+      const scaleY = windowHeight / targetHeight;
+      
+      // We want to fit the poster with a minor 3% margin to make it frame beautifully
+      const scale = Math.min(scaleX, scaleY) * 0.96; 
+      
+      poster.style.transform = `scale(${scale})`;
+    }
+    
+    // Listen to resize and load events
+    window.addEventListener('resize', resizePoster);
+    window.addEventListener('load', resizePoster);
+  </script>
+</body>
+</html>
