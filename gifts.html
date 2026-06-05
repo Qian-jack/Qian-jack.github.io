@@ -712,10 +712,17 @@
 
     </div><!-- /.wuxing-panels -->
 
-    <!-- ── Poster Auto-Scroll Carousel ── -->
+    <!-- ── Poster Auto-Scroll Carousel (Row 1: right-to-left) ── -->
     <div class="poster-carousel-wrap" id="posterCarousel">
       <div class="poster-carousel-track" id="posterTrack">
-        <!-- items injected by JS (duplicated for infinite loop) -->
+        <!-- items injected by JS -->
+      </div>
+    </div>
+
+    <!-- ── Poster Auto-Scroll Carousel (Row 2: left-to-right, girl version) ── -->
+    <div class="poster-carousel-wrap" id="posterCarousel2" style="margin-top:100px;">
+      <div class="poster-carousel-track" id="posterTrack2">
+        <!-- items injected by JS -->
       </div>
     </div>
 
@@ -783,93 +790,28 @@
 
 
   /* ════════════════════════════════════════
-     2. Poster Infinite Scroll Carousel
+     2. Poster Carousels (Row 1 & Row 2) + Shared Lightbox
   ════════════════════════════════════════ */
   (function () {
-    const POSTERS = [
-      { src: 'assets/figma/figma_poster_wood.png',  alt: '木 · 这也行' },
-      { src: 'assets/figma/figma_poster_gold.png',  alt: '金 · 你行'   },
-      { src: 'assets/figma/figma_poster_water.png', alt: '水 · 真行'   },
-      { src: 'assets/figma/figma_poster_fire.png',  alt: '火 · 我行'   },
-      { src: 'assets/figma/figma_poster_earth.png', alt: '土 · 都行'   },
-    ];
 
-    const wrap  = document.getElementById('posterCarousel');
-    const track = document.getElementById('posterTrack');
-
-    // Duplicate posters 3× for seamless loop
-    const REPS = 3;
-    for (let r = 0; r < REPS; r++) {
-      POSTERS.forEach((p, i) => {
-        const item = document.createElement('div');
-        item.className = 'poster-carousel-item';
-        item.dataset.index = i; // original index for lightbox
-        const img = document.createElement('img');
-        img.src = p.src;
-        img.alt = p.alt;
-        img.loading = 'lazy';
-        item.appendChild(img);
-        track.appendChild(item);
-      });
-    }
-
-    /* ── Scroll animation ── */
-    let offset   = 0;
-    let paused   = false;
-    let raf      = null;
-    const SPEED  = 0.6; // px per frame
-
-    function getItemWidth() {
-      const first = track.firstElementChild;
-      return first ? first.getBoundingClientRect().width : 0;
-    }
-
-    function getSetWidth() {
-      return getItemWidth() * POSTERS.length;
-    }
-
-    function tick() {
-      if (!paused) {
-        offset += SPEED;
-        const setW = getSetWidth();
-        if (setW > 0 && offset >= setW) {
-          offset -= setW; // seamless reset
-        }
-        track.style.transform = `translateX(${-offset}px)`;
-      }
-      raf = requestAnimationFrame(tick);
-    }
-
-    raf = requestAnimationFrame(tick);
-
-    /* pause on hover */
-    wrap.addEventListener('mouseenter', () => { paused = true;  wrap.classList.add('is-paused'); });
-    wrap.addEventListener('mouseleave', () => { paused = false; wrap.classList.remove('is-paused'); });
-
-    /* pause when tab not visible */
-    document.addEventListener('visibilitychange', () => {
-      paused = document.hidden;
-    });
-
-
-    /* ════════════════════════════════════════
-       3. Lightbox
-    ════════════════════════════════════════ */
-    const lb       = document.getElementById('posterLightbox');
-    const lbImg    = document.getElementById('lbImg');
-    const lbClose  = document.getElementById('lbClose');
-    const lbPrev   = document.getElementById('lbPrev');
-    const lbNext   = document.getElementById('lbNext');
+    /* ── Shared Lightbox setup ── */
+    const lb        = document.getElementById('posterLightbox');
+    const lbImg     = document.getElementById('lbImg');
+    const lbClose   = document.getElementById('lbClose');
+    const lbPrev    = document.getElementById('lbPrev');
+    const lbNext    = document.getElementById('lbNext');
     const lbCounter = document.getElementById('lbCounter');
 
+    let lbSources  = []; // will be set by whichever carousel is clicked
     let currentIdx = 0;
 
-    function showLightbox(idx) {
-      currentIdx = ((idx % POSTERS.length) + POSTERS.length) % POSTERS.length;
-      const p = POSTERS[currentIdx];
-      lbImg.src = p.src;
-      lbImg.alt = p.alt;
-      lbCounter.textContent = `${currentIdx + 1} / ${POSTERS.length}`;
+    function showLightbox(sources, idx) {
+      lbSources  = sources;
+      currentIdx = ((idx % lbSources.length) + lbSources.length) % lbSources.length;
+      const p    = lbSources[currentIdx];
+      lbImg.src  = p.src;
+      lbImg.alt  = p.alt;
+      lbCounter.textContent = `${currentIdx + 1} / ${lbSources.length}`;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -879,40 +821,117 @@
       document.body.style.overflow = '';
     }
 
-    function goPrev() { showLightbox(currentIdx - 1); }
-    function goNext() { showLightbox(currentIdx + 1); }
-
-    // Open on item click
-    track.addEventListener('click', e => {
-      const item = e.target.closest('.poster-carousel-item');
-      if (!item) return;
-      showLightbox(parseInt(item.dataset.index, 10));
-    });
+    function navigate(dir) {
+      showLightbox(lbSources, currentIdx + dir);
+    }
 
     lbClose.addEventListener('click', closeLightbox);
-    lbPrev.addEventListener('click',  e => { e.stopPropagation(); goPrev(); });
-    lbNext.addEventListener('click',  e => { e.stopPropagation(); goNext(); });
-
-    // Close on backdrop click
-    lb.addEventListener('click', e => {
-      if (e.target === lb) closeLightbox();
-    });
-
-    // Keyboard navigation
+    lbPrev.addEventListener('click',  e => { e.stopPropagation(); navigate(-1); });
+    lbNext.addEventListener('click',  e => { e.stopPropagation(); navigate(+1); });
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return;
       if (e.key === 'Escape')     closeLightbox();
-      if (e.key === 'ArrowLeft')  goPrev();
-      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft')  navigate(-1);
+      if (e.key === 'ArrowRight') navigate(+1);
     });
-
-    // Touch swipe in lightbox
     let touchStartX = 0;
     lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend',   e => {
       const dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) > 50) dx < 0 ? goNext() : goPrev();
+      if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
     });
+
+
+    /* ── Carousel factory ── */
+    // direction: +1 = right→left (normal), -1 = left→right (reverse)
+    function createCarousel(wrapId, trackId, posters, direction) {
+      const wrap  = document.getElementById(wrapId);
+      const track = document.getElementById(trackId);
+      if (!wrap || !track) return;
+
+      const REPS  = 3;
+      const SPEED = 0.6;
+
+      // Build DOM
+      for (let r = 0; r < REPS; r++) {
+        posters.forEach((p, i) => {
+          const item = document.createElement('div');
+          item.className  = 'poster-carousel-item';
+          item.dataset.index = i;
+          const img = document.createElement('img');
+          img.src     = p.src;
+          img.alt     = p.alt;
+          img.loading = 'lazy';
+          item.appendChild(img);
+          track.appendChild(item);
+        });
+      }
+
+      function getItemW()  { const f = track.firstElementChild; return f ? f.getBoundingClientRect().width : 0; }
+      function getSetW()   { return getItemW() * posters.length; }
+
+      // For reverse direction: start at one full set width so we can scroll "backwards"
+      let offset = direction === -1 ? getSetW() || 0 : 0;
+      let paused = false;
+
+      function tick() {
+        if (!paused) {
+          const setW = getSetW();
+          if (setW > 0) {
+            offset += SPEED * direction;
+            // Clamp for seamless loop in both directions
+            if (direction === 1  && offset >= setW) offset -= setW;
+            if (direction === -1 && offset <= 0)    offset += setW;
+            track.style.transform = `translateX(${-offset}px)`;
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+
+      // Init reverse start after first paint
+      if (direction === -1) {
+        requestAnimationFrame(() => {
+          const setW = getSetW();
+          if (setW > 0 && offset === 0) { offset = setW; }
+        });
+      }
+
+      wrap.addEventListener('mouseenter', () => { paused = true;  wrap.classList.add('is-paused'); });
+      wrap.addEventListener('mouseleave', () => { paused = false; wrap.classList.remove('is-paused'); });
+      document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+      // Click → lightbox
+      track.addEventListener('click', e => {
+        const item = e.target.closest('.poster-carousel-item');
+        if (!item) return;
+        showLightbox(posters, parseInt(item.dataset.index, 10));
+      });
+    }
+
+
+    /* ── Row 1: male posters, right → left ── */
+    const POSTERS_ROW1 = [
+      { src: 'assets/figma/figma_poster_wood.png',  alt: '木 · 这也行' },
+      { src: 'assets/figma/figma_poster_gold.png',  alt: '金 · 你行'   },
+      { src: 'assets/figma/figma_poster_water.png', alt: '水 · 真行'   },
+      { src: 'assets/figma/figma_poster_fire.png',  alt: '火 · 我行'   },
+      { src: 'assets/figma/figma_poster_earth.png', alt: '土 · 都行'   },
+    ];
+    createCarousel('posterCarousel',  'posterTrack',  POSTERS_ROW1, +1);
+
+
+    /* ── Row 2: girl posters, left → right (reverse) ── */
+    const POSTERS_ROW2 = [
+      { src: 'assets/figma/figma_poster_wood_girl.png',  alt: '木 · 这也行' },
+      { src: 'assets/figma/figma_poster_gold_girl.png',  alt: '金 · 你行'   },
+      { src: 'assets/figma/figma_poster_water_girl.png', alt: '水 · 真行'   },
+      { src: 'assets/figma/figma_poster_fire_girl.png',  alt: '火 · 我行'   },
+      { src: 'assets/figma/figma_poster_earth_girl.png', alt: '土 · 都行'   },
+    ];
+    createCarousel('posterCarousel2', 'posterTrack2', POSTERS_ROW2, -1);
 
   })();
   </script>
