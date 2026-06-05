@@ -1772,7 +1772,7 @@ input {
 }
 
 .handwriting-title {
-  width: min(100%, 798px);
+  width: min(100%, 479px);
   height: auto;
   aspect-ratio: 481.24 / 113.39;
 }
